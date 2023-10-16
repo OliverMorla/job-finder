@@ -9,7 +9,7 @@ const Layout = () => {
     <SafeAreaView>
       <StatusBar style="dark" />
       <View style={styles.header}>
-        <Text>Header</Text>
+        <Text >Header</Text>
       </View>
       <View>
         <Slot />
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   header: {
     height: 56,
     width: "100%",
-    backgroundColor: colors.gray2,
+    backgroundColor: colors.primary,
   },
   container: {
     width: "100%",

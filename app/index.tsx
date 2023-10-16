@@ -12,6 +12,16 @@ const Home = () => {
             header: () => null,
           }}
         />
+        <ScrollView>
+          <View>
+            <Text style={{ fontSize: 64 }}>Home</Text>
+          </View>
+        </ScrollView>
+        <ScrollView>
+          <View>
+            <Text>Hello World!</Text>
+          </View>
+        </ScrollView>
       </SafeAreaView>
     </>
   );
