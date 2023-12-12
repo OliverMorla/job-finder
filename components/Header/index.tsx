@@ -1,4 +1,5 @@
 import {
+  Text,
   View,
   Image,
   TouchableOpacity,
@@ -44,23 +45,7 @@ const ScreenHeaderRightButtons = ({
     <TouchableOpacity>
       <View className="flex flex-row gap-10">
         <Image
-          source={icons.chatSquare}
-          resizeMode="contain"
-          style={{
-            width: dimensions.width,
-            height: dimensions.height,
-          }}
-        />
-        <Image
-          source={icons.bell}
-          resizeMode="contain"
-          style={{
-            width: dimensions.width,
-            height: dimensions.height,
-          }}
-        />
-        <Image
-          source={icons.menu}
+          source={icons.user}
           resizeMode="contain"
           style={{
             width: dimensions.width,
@@ -72,4 +57,18 @@ const ScreenHeaderRightButtons = ({
   );
 };
 
-export { ScreenHeaderRightButtons, ScreenHeaderBtn };
+const ScreenHeaderBtnWithText = ({
+  text,
+  onPress,
+}: {
+  text: string;
+  onPress: () => void;
+}) => {
+  return (
+    <TouchableOpacity onPress={() => {}}>
+      <Text>{text}</Text>
+    </TouchableOpacity>
+  );
+};
+
+export { ScreenHeaderRightButtons, ScreenHeaderBtn, ScreenHeaderBtnWithText };

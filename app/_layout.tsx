@@ -1,10 +1,7 @@
 import { Stack } from "expo-router";
+import { ScreenHeaderBtn, ScreenHeaderBtnWithText } from "../components/Header";
 
-import {
-  ScreenHeaderBtn,
-  ScreenHeaderRightButtons,
-} from "../components/Header/screen-header-buttons";
-
+import colors from "../constants/colors";
 import icons from "../constants/icons";
 
 export default function Layout() {
@@ -12,22 +9,29 @@ export default function Layout() {
     <Stack
       screenOptions={{
         headerStyle: {
-          backgroundColor: "transparent",
+          backgroundColor: colors.light.background,
         },
-        headerTintColor: "#fff",
+        headerTitle: () => (
+          <ScreenHeaderBtnWithText onPress={() => {}} text="Hello, User" />
+        ),
         headerLeft: () => (
           <ScreenHeaderBtn
-            iconUrl={icons.logo}
+            dimensions={{
+              height: 25,
+              width: 25,
+            }}
+            iconUrl={icons.menu}
             onPress={() => {}}
-            dimensions={{ width: 100, height: 40 }}
           />
         ),
         headerRight: () => (
-          <ScreenHeaderRightButtons
+          <ScreenHeaderBtn
             dimensions={{
-              width: 25,
               height: 25,
+              width: 25,
             }}
+            iconUrl={icons.user}
+            onPress={() => {}}
           />
         ),
       }}

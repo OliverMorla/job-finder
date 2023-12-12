@@ -1,11 +1,11 @@
 import { View, Text } from "react-native";
 
-const JobDetails = () => {
+const UserTab = () => {
   return (
     <View>
-      <Text>Job Details</Text>
+      <Text>User</Text>
     </View>
   );
 };
 
-export default JobDetails;
+export default UserTab;

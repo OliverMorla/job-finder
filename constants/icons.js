@@ -1,21 +1,23 @@
 import user from "../assets/icons/user.png";
-import bell from "../assets/icons/notifications.png";
 import menu from "../assets/icons/menu.png";
-import chatSquare from "../assets/icons/chat-square.png";
-import chatCircle from "../assets/icons/chat-circle.png";
-import userCircle from "../assets/icons/user-circle.png";
-import pin from "../assets/icons/pin.png";
 import search from "../assets/icons/search.png";
-import logo from "../assets/icons/logo.png";
+import arrow from "../assets/icons/arrow.png";
+import bookmark from "../assets/icons/bookmark.png";
+import close from "../assets/icons/close.png";
+import home from "../assets/icons/home.png";
+import chat from "../assets/icons/chat.png";
+import star from "../assets/icons/star.png";
+import searchBanner from "../assets/images/search-banner.png";
 
 export default {
-  logo,
   user,
-  bell,
   menu,
   search,
-  pin,
-  chatSquare,
-  chatCircle,
-  userCircle,
+  arrow,
+  bookmark,
+  close,
+  home,
+  chat,
+  star,
+  searchBanner,
 };
