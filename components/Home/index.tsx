@@ -45,7 +45,7 @@ const SkilledJobs = () => {
     <View className="p-4">
       <View className="flex-row justify-between items-center">
         <Text className="font-bold text-2xl">Based on your skills</Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => router.push("/job/view-all/")}>
           <Text
             style={{
               color: colors.light.tint,

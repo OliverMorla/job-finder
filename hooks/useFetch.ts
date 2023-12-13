@@ -28,7 +28,7 @@ const useFetch = (query: JobResponseQuery) => {
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred");
     } finally {
-      setError("")
+      setError("");
       setIsLoading(false);
     }
   };
@@ -37,7 +37,12 @@ const useFetch = (query: JobResponseQuery) => {
     fetchData();
   }, []);
 
-  return { data, isLoading, error };
+  const reFetch = () => {
+    setIsLoading(true);
+    fetchData();
+  };
+
+  return { data, isLoading, error, reFetch };
 };
 
 export default useFetch;

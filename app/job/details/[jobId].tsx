@@ -44,7 +44,7 @@ const JobDetails = () => {
           ),
         }}
       ></Stack.Screen>
-      <ScrollView className="p-6">
+      <ScrollView className="p-6 mb-10">
         <View className="items-center">
           <Image
             source={{ uri: job?.employer_logo! }}
@@ -63,9 +63,7 @@ const JobDetails = () => {
           </View>
         </View>
         <View>
-          <Text>
-            Salary
-          </Text>
+          <Text>Salary</Text>
         </View>
         <View>
           <View className="flex-row bg-[#ccafff4e] p-3 rounded-2xl items-center mt-4">
@@ -108,22 +106,22 @@ const JobDetails = () => {
             </View>
           ) : null}
         </View>
+        <View>
+          <Text className="text-center opacity-50 mt-6">
+            This job was posted on{" "}
+            {new Date(job.job_posted_at_datetime_utc).toLocaleDateString()}
+          </Text>
+        </View>
       </ScrollView>
-      <View
+
+      <TouchableOpacity
+        className="p-4 items-center text-center w-[80%] mx-auto rounded-2xl bottom-10"
         style={{
-          position: "fixed",
+          backgroundColor: colors.light.tint,
         }}
-        className="bottom-10"
       >
-        <TouchableOpacity
-          className="p-4 items-center text-center w-[80%] mx-auto rounded-2xl"
-          style={{
-            backgroundColor: colors.light.tint,
-          }}
-        >
-          <Text className="text-white font-bold">Apply Now</Text>
-        </TouchableOpacity>
-      </View>
+        <Text className="text-white font-bold">Apply Now</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };

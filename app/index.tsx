@@ -55,10 +55,10 @@ export default function HomeScreen() {
         }}
       />
       <Tab.Screen
-        name="Chat"
+        name="Inbox"
         component={NotificationsTab}
         options={{
-          title: "Bookmarks",
+          title: "Inbox",
           tabBarIcon: ({ focused }) => (
             <Image
               source={icons.chat}
