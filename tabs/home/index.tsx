@@ -1,8 +1,11 @@
 import { View, ScrollView } from "react-native";
 import { SearchBar, SkilledJobs } from "../../components/Home";
 import colors from "../../constants/colors";
+import { useAuth } from "../../providers/auth-provider";
 
 const HomeTab = () => {
+  const { signIn } = useAuth();
+  console.log(signIn())
   return (
     <ScrollView
       style={{
