@@ -1,4 +1,5 @@
 import express, { NextFunction, Request, Response } from "express";
+import { signInUser } from "../controllers/userController";
 
 const userRouter = express.Router();
 
@@ -25,13 +26,7 @@ userRouter.get(
   }
 );
 
-userRouter.get("/login", async (req: Request, res: Response) => {
-  res
-    .json({
-      message: "Login route!",
-    })
-    .status(200);
-});
+userRouter.route("/login").post(signInUser);
 
 userRouter.get("/register", async (req: Request, res: Response) => {
   res

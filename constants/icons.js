@@ -7,6 +7,8 @@ import close from "../assets/icons/close.png";
 import home from "../assets/icons/home.png";
 import chat from "../assets/icons/chat.png";
 import star from "../assets/icons/star.png";
+import mail from "../assets/icons/mail.png";
+import password from "../assets/icons/password.png";
 import searchBanner from "../assets/images/search-banner.png";
 
 export default {
@@ -19,5 +21,7 @@ export default {
   home,
   chat,
   star,
+  mail,
+  password,
   searchBanner,
 };

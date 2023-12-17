@@ -63,3 +63,25 @@ interface JobResponseQuery {
   page: number;
   num_pages: number;
 }
+
+
+interface SignInInputProps {
+  email?: string;
+  password?: string;
+}
+
+interface SignUpInputProps {
+  displayName: string;
+  avatar: string;
+  email: string;
+  password: string;
+}
+
+interface SessionProps {
+  expires: string;
+  user: {
+    displayName: string;
+    email: string;
+    avatar: string;
+  };
+}

@@ -1,33 +1,14 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
-interface SignInInputProps {
-  user: {
-    email: string;
-    password: string;
-  };
-}
-
-interface SignUpInputProps {
-  displayName: string;
-  avatar: string;
-  email: string;
-  password: string;
-}
-
-interface SessionProps {
-  expires: string;
-  user: {
-    displayName: string;
-    email: string;
-    avatar: string;
-  };
-}
+import { Alert } from "react-native";
+import axios from "axios";
+import { router } from "expo-router";
 
 interface AuthContextProps {
   signIn: (input: SignInInputProps) => Promise<void>;
   signUp: (input: SignUpInputProps) => Promise<void>;
   signOut: () => Promise<void>;
+  session: SessionProps | null;
 }
 
 export const AuthContext = createContext<AuthContextProps | null>(null);
@@ -57,7 +38,27 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   const signIn = async (input: SignInInputProps) => {
-    await AsyncStorage.setItem("auth-session", JSON.stringify(input));
+    if (input.email === "" || input.password === "") {
+      return Alert.alert("Please fill out all fields");
+    }
+
+    if (!input.email?.includes("@")) {
+      return Alert.alert("Please enter a valid email!");
+    }
+
+    try {
+      const res = await axios.post("http://localhost:3000/auth/login", input);
+
+      if (res.data.ok) {
+        await AsyncStorage.setItem("auth-session", JSON.stringify(input));
+
+        router.push("/");
+
+        return;
+      }
+    } catch (err) {
+      console.log(err instanceof Error ? err.message : null);
+    }
   };
 
   const signOut = async () => {
@@ -72,6 +73,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         signIn,
         signOut,
         signUp,
+        session,
       }}
     >
       {children}
