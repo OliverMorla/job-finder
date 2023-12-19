@@ -1,8 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Alert } from "react-native";
-import axios from "axios";
 import { router } from "expo-router";
+import axios from "axios";
 
 interface AuthContextProps {
   signIn: (input: SignInInputProps) => Promise<void>;
@@ -47,10 +47,20 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
 
     try {
-      const res = await axios.post("http://localhost:3000/auth/login", input);
+      const res = await axios.post(
+        "https://job-finder-node-production.up.railway.app/auth/login",
+        input
+      );
 
       if (res.data.ok) {
-        await AsyncStorage.setItem("auth-session", JSON.stringify(input));
+        const newSession = {
+          expires: "",
+          user: res.data.user,
+        };
+
+        setSession(newSession);
+
+        await AsyncStorage.setItem("auth-session", JSON.stringify(newSession));
 
         router.push("/");
 
@@ -61,11 +71,42 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  const signOut = async () => {
-    await AsyncStorage.removeItem("auth-session");
+  const signUp = async (input: SignUpInputProps) => {
+    if (
+      input.email === "" ||
+      input.password === "" ||
+      input.displayName === ""
+    ) {
+      return Alert.alert("Please fill out all fields");
+    }
+
+    if (!input.email?.includes("@")) {
+      return Alert.alert("Please enter a valid email!");
+    }
+
+    try {
+      const res = await axios.post(
+        "https://job-finder-node-production.up.railway.app/auth/register",
+        input
+      );
+
+      if (res.data.ok) {
+        Alert.alert(res.data.message);
+
+        router.push("/auth/sign-in/");
+
+        return;
+      }
+    } catch (err) {
+      console.log(err instanceof Error ? err : null);
+    }
   };
 
-  const signUp = async () => {};
+  const signOut = async () => {
+    router.push("/");
+    
+    await AsyncStorage.removeItem("auth-session");
+  };
 
   return (
     <AuthContext.Provider

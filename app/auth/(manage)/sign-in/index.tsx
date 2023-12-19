@@ -1,13 +1,6 @@
 import { useState } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  TextInput,
-  Image,
-  NativeSyntheticEvent,
-  TextInputChangeEventData,
-} from "react-native";
+import { router } from "expo-router";
+import { View, Text, TouchableOpacity, TextInput, Image } from "react-native";
 import icons from "../../../../constants/icons";
 import colors from "../../../../constants/colors";
 import { useAuth } from "../../../../providers/auth-provider";
@@ -23,7 +16,10 @@ const SignIn = () => {
   console.log(input);
 
   return (
-    <View className="items-center justify-center flex-1">
+    <View
+      className="items-center justify-center flex-1"
+      style={{ backgroundColor: colors.light.background }}
+    >
       <Text className="text-6xl font-bold text-center">Let's you in</Text>
       <View className="">
         <View className="gap-4">
@@ -64,9 +60,17 @@ const SignIn = () => {
         </View>
         <TouchableOpacity
           className="bg-[#CCAFFF] w-[250px] h-[55px] items-center justify-center mt-4"
-          onPress={() => signIn(input)}
+          onPress={async () => await signIn(input)}
         >
           <Text className="text-white font-bold">Sign in</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          className="bg-[#e3d4fe] w-[250px] h-[55px] items-center justify-center mt-4"
+          onPress={() => router.push("/auth/sign-up/")}
+        >
+          <Text className="text-white font-bold">
+            Don't have an account? Sign Up
+          </Text>
         </TouchableOpacity>
       </View>
     </View>

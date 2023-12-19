@@ -72,7 +72,7 @@ interface SignInInputProps {
 
 interface SignUpInputProps {
   displayName: string;
-  avatar: string;
+  avatar?: string;
   email: string;
   password: string;
 }

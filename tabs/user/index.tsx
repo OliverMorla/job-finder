@@ -1,17 +1,22 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
 import { useAuth } from "../../providers/auth-provider";
+import AuthDashboard from "../../components/Auth/Dashboard";
+import colors from "../../constants/colors";
 const UserTab = () => {
   const { session, signOut } = useAuth();
-
-  console.log(signOut())
 
   const router = useRouter();
 
   return (
-    <View>
+    <View
+      style={{
+        backgroundColor: colors.light.background,
+      }}
+      className="h-full"
+    >
       {session ? (
-        session?.user?.displayName
+        <AuthDashboard />
       ) : (
         <TouchableOpacity onPress={() => router.push("/auth/sign-in/")}>
           <Text>Tap here to login!</Text>
