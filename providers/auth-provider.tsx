@@ -4,13 +4,6 @@ import { Alert } from "react-native";
 import { router } from "expo-router";
 import axios from "axios";
 
-interface AuthContextProps {
-  signIn: (input: SignInInputProps) => Promise<void>;
-  signUp: (input: SignUpInputProps) => Promise<void>;
-  signOut: () => Promise<void>;
-  session: SessionProps | null;
-}
-
 export const AuthContext = createContext<AuthContextProps | null>(null);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
@@ -103,9 +96,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const signOut = async () => {
-    router.push("/");
-    
     await AsyncStorage.removeItem("auth-session");
+
+    router.push("/");
   };
 
   return (

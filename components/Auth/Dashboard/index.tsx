@@ -1,12 +1,16 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import { useAuth } from "../../../providers/auth-provider";
 import icons from "../../../constants/icons";
+
 const AuthDashboard = () => {
   const { signOut, session } = useAuth();
   return (
     <View className="items-center justify-center h-full">
       <View>
-        <Image source={icons.user} className="border-slate-200 border-[1px] rounded-full"/>
+        <Image
+          source={icons.user}
+          className="border-slate-200 border-[1px] rounded-full"
+        />
         {session?.user.avatar === null ? (
           <Text> Tap to add an avatar </Text>
         ) : null}

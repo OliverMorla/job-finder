@@ -1,21 +1,11 @@
 import { View, ScrollView } from "react-native";
 import { SearchBar, SkilledJobs } from "../../components/Home";
-import colors from "../../constants/colors";
-import { useAuth } from "../../providers/auth-provider";
+import { styles } from "../../styles";
 
 const HomeTab = () => {
   return (
-    <ScrollView
-      style={{
-        flex: 1,
-        backgroundColor: colors.light.background,
-      }}
-    >
-      <View
-        style={{
-          flex: 1,
-        }}
-      >
+    <ScrollView style={styles.containerWithGrowBg}>
+      <View>
         <SearchBar />
         <SkilledJobs />
       </View>

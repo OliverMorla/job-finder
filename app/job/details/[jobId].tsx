@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   Image,
   TouchableOpacity,
+  Linking,
 } from "react-native";
 import { Stack, router, useGlobalSearchParams } from "expo-router";
 import db from "../../../lib/db-local";
@@ -119,6 +120,7 @@ const JobDetails = () => {
         style={{
           backgroundColor: colors.light.tint,
         }}
+        onPress={() => Linking.openURL(job.job_apply_link)}
       >
         <Text className="text-white font-bold">Apply Now</Text>
       </TouchableOpacity>

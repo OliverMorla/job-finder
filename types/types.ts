@@ -64,6 +64,12 @@ interface JobResponseQuery {
   num_pages: number;
 }
 
+interface AuthContextProps {
+  signIn: (input: SignInInputProps) => Promise<void>;
+  signUp: (input: SignUpInputProps) => Promise<void>;
+  signOut: () => Promise<void>;
+  session: SessionProps | null;
+}
 
 interface SignInInputProps {
   email?: string;

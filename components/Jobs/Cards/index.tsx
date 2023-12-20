@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { View, Text, Image, TouchableOpacity, Linking } from "react-native";
 import icons from "../../../constants/icons";
 import colors from "../../../constants/colors";
 
@@ -69,6 +69,7 @@ const JobCard = ({ job }: { job: JobProps }) => {
             borderRadius: 10,
             backgroundColor: colors.light.tint,
           }}
+          onPress={() => Linking.openURL(job.job_apply_link)}
         >
           <Text className="text-white font-bold">Apply Now</Text>
         </TouchableOpacity>

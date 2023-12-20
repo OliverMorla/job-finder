@@ -1,26 +1,38 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
+
 import { useAuth } from "../../providers/auth-provider";
 import AuthDashboard from "../../components/Auth/Dashboard";
-import colors from "../../constants/colors";
+import { styles, stylesWithGap } from "../../styles";
+
 const UserTab = () => {
-  const { session, signOut } = useAuth();
+  const { session } = useAuth();
 
   const router = useRouter();
 
   return (
-    <View
-      style={{
-        backgroundColor: colors.light.background,
-      }}
-      className="h-full"
-    >
+    <View style={styles.containerWithHeightBg}>
       {session ? (
         <AuthDashboard />
       ) : (
-        <TouchableOpacity onPress={() => router.push("/auth/sign-in/")}>
-          <Text>Tap here to login!</Text>
-        </TouchableOpacity>
+        <View style={styles.containerCenterWithHeight} className="gap-4">
+          <TouchableOpacity
+            className="bg-green-500 p-4 items-center rounded-lg"
+            onPress={() => router.push("/auth/sign-in/")}
+          >
+            <Text className="font-bold">Sign In</Text>
+            <Text className="opacity-40">
+              Tap here to login and get started
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            className="bg-blue-500 p-4 items-center rounded-lg"
+            onPress={() => router.push("/auth/sign-up/")}
+          >
+            <Text className="font-bold">Sign Up</Text>
+            <Text className="opacity-40">Tap here to create an account</Text>
+          </TouchableOpacity>
+        </View>
       )}
     </View>
   );

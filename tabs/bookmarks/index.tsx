@@ -1,8 +1,9 @@
 import { View, Text } from "react-native";
+import { styles } from "../../styles";
 
 const BookmarksTab = () => {
   return (
-    <View>
+    <View style={styles.containerCenterWithHeightBg}>
       <Text>Bookmarks</Text>
     </View>
   );
