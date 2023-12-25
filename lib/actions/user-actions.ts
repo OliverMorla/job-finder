@@ -20,3 +20,5 @@ const updateAccount = async (userId: string, data: any) => {
     return res.data;
   } catch (err) {}
 };
+
+export { deleteAccount, updateAccount };

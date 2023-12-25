@@ -1,9 +1,10 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import { useRouter } from "expo-router";
 
 import { useAuth } from "../../providers/auth-provider";
+import { styles } from "../../styles";
 import AuthDashboard from "../../components/Auth/Dashboard";
-import { styles, stylesWithGap } from "../../styles";
+import icons from "../../constants/icons";
 
 const UserTab = () => {
   const { session } = useAuth();
@@ -15,22 +16,52 @@ const UserTab = () => {
       {session ? (
         <AuthDashboard />
       ) : (
-        <View style={styles.containerCenterWithHeight} className="gap-4">
+        <View style={styles.containerCenterWithHeight}>
           <TouchableOpacity
-            className="bg-green-500 p-4 items-center rounded-lg"
+            className="p-4 items-center rounded-lg"
             onPress={() => router.push("/auth/sign-in/")}
+            style={{
+              elevation: 5,
+              borderColor: "black",
+              borderWidth: 0.2,
+            }}
           >
-            <Text className="font-bold">Sign In</Text>
-            <Text className="opacity-40">
-              Tap here to login and get started
-            </Text>
+            <Image
+              source={icons.happyFaceBlue}
+              style={{
+                width: 50,
+                height: 50,
+              }}
+            />
+
+            <View className="items-center">
+              <Text className="font-bold">Sign In</Text>
+              <Text className="opacity-40">
+                Tap here to login and get started
+              </Text>
+            </View>
           </TouchableOpacity>
+
           <TouchableOpacity
-            className="bg-blue-500 p-4 items-center rounded-lg"
+            className="p-4 items-center rounded-lg mt-4"
             onPress={() => router.push("/auth/sign-up/")}
+            style={{
+              elevation: 5,
+              borderColor: "black",
+              borderWidth: 0.2,
+            }}
           >
-            <Text className="font-bold">Sign Up</Text>
-            <Text className="opacity-40">Tap here to create an account</Text>
+            <Image
+              source={icons.addGreen}
+              style={{
+                width: 50,
+                height: 50,
+              }}
+            />
+            <View className="items-center">
+              <Text className="font-bold">Sign Up</Text>
+              <Text className="opacity-40">Tap here to create an account</Text>
+            </View>
           </TouchableOpacity>
         </View>
       )}

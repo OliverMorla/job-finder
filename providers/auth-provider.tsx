@@ -96,9 +96,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const signOut = async () => {
-    await AsyncStorage.removeItem("auth-session");
-
-    router.push("/");
+    try {
+      await AsyncStorage.removeItem("auth-session");
+      setSession(null);
+    } catch (err) {
+      console.log(err instanceof Error ? err : null);
+    }
   };
 
   return (

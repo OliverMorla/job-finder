@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { router } from "expo-router";
 import { View, Text, TouchableOpacity, TextInput, Image } from "react-native";
+
 import icons from "../../../../constants/icons";
 import colors from "../../../../constants/colors";
 import { useAuth } from "../../../../providers/auth-provider";
@@ -12,8 +13,6 @@ const SignIn = () => {
     email: "",
     password: "",
   });
-
-  console.log(input);
 
   return (
     <View

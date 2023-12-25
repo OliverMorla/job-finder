@@ -6,6 +6,7 @@ import {
   ImageSourcePropType,
 } from "react-native";
 import icons from "../../constants/icons";
+import { useAuth } from "../../providers/auth-provider";
 
 const ScreenHeaderBtn = ({
   iconUrl,
@@ -57,16 +58,11 @@ const ScreenHeaderRightButtons = ({
   );
 };
 
-const ScreenHeaderBtnWithText = ({
-  text,
-  onPress,
-}: {
-  text: string;
-  onPress: () => void;
-}) => {
+const ScreenHeaderBtnWithText = ({ onPress }: { onPress: () => void }) => {
+  const { session } = useAuth();
   return (
     <TouchableOpacity onPress={() => {}}>
-      <Text>{text}</Text>
+      <Text>Hello, {session ? session.user.displayName : "Guest"}</Text>
     </TouchableOpacity>
   );
 };

@@ -8,11 +8,16 @@ import home from "../assets/icons/home.png";
 import chat from "../assets/icons/chat.png";
 import star from "../assets/icons/star.png";
 import mail from "../assets/icons/mail.png";
+import addGreen from "../assets/icons/add-green.png";
+import signOut from "../assets/icons/sign-out.png";
+import signIn from "../assets/icons/sign-in.png";
+import happyFaceBlue from "../assets/icons/happy-face-blue.png";
 import password from "../assets/icons/password.png";
 import searchBanner from "../assets/images/search-banner.png";
-
+import job from "../assets/icons/job.png";
 export default {
   user,
+  signOut,
   menu,
   search,
   arrow,
@@ -23,5 +28,9 @@ export default {
   star,
   mail,
   password,
+  addGreen,
+  signIn,
+  happyFaceBlue,
   searchBanner,
+  job,
 };

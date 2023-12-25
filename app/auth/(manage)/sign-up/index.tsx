@@ -16,8 +16,6 @@ const SignUp = () => {
     password: "",
   });
 
-  console.log(input);
-
   return (
     <View
       className="items-center justify-center flex-1"

@@ -6,14 +6,16 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { router } from "expo-router";
-import { JobCard } from "../../../components/Jobs/Cards";
+import { ViewAllJobCards } from "../../../components/Jobs/Cards";
 import db from "../../../lib/db-local";
+import colors from "../../../constants/colors";
 const ViewAllJobs = () => {
   return (
-    <SafeAreaView>
-      <View>
-        <Text className="text-center font-bold text-xl">View All Jobs</Text>
-      </View>
+    <SafeAreaView
+      style={{
+        backgroundColor: colors.light.background,
+      }}
+    >
       <FlatList
         className="mt-6"
         data={db.data}
@@ -22,7 +24,7 @@ const ViewAllJobs = () => {
             className="items-center"
             onPress={() => router.push(`/job/details/${item.job_id}`)}
           >
-            <JobCard job={item as any} />
+            <ViewAllJobCards job={item as any} />
           </TouchableOpacity>
         )}
         contentContainerStyle={{ gap: 20 }}
