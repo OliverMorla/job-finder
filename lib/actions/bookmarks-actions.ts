@@ -8,7 +8,9 @@ const getBookmarks = async () => {
   try {
     const res = await axios.get(`${api}/auth/bookmarks`);
     return res.data;
-  } catch (err) {}
+  } catch (err) {
+    return Alert.alert("Error", "Failed to fetch bookmarks");
+  }
 };
 
 // fetch server to store a bookmark
@@ -17,8 +19,12 @@ const addToBookmarks = async (jobId: string) => {
 
   try {
     const res = await axios.post(`${api}/auth/bookmarks`, { jobId });
-    return res.data;
-  } catch (err) {}
+    if (res.data.ok) {
+      return Alert.alert("Success", "Bookmark added");
+    }
+  } catch (err) {
+    return Alert.alert("Error", "Job already bookmarked");
+  }
 };
 
 // fetch server to remove a bookmark
@@ -27,6 +33,12 @@ const removeFromBookmarks = async (jobId: string) => {
 
   try {
     const res = await axios.delete(`${api}/auth/bookmarks/${jobId}`);
-    return res.data;
-  } catch (err) {}
+    if (res.data.ok) {
+      return Alert.alert("Success", "Bookmark removed");
+    }
+  } catch (err) {
+    return Alert.alert("Error", "Failed to remove bookmark");
+  }
 };
+
+export { getBookmarks, addToBookmarks, removeFromBookmarks };

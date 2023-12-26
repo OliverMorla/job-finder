@@ -7,6 +7,7 @@ import HomeTab from "../tabs/home";
 import BookmarksTab from "../tabs/bookmarks";
 import NotificationsTab from "../tabs/notifications";
 import UserTab from "../tabs/user";
+import colors from "../constants/colors";
 
 const Tab = createBottomTabNavigator();
 
@@ -30,7 +31,7 @@ export default function HomeScreen() {
               style={{
                 width: 25,
                 height: 25,
-                tintColor: focused ? "#e32f45" : "#748c94",
+                tintColor: focused ? colors.light.tint : "#748c94",
               }}
             />
           ),
@@ -48,17 +49,17 @@ export default function HomeScreen() {
               style={{
                 width: 25,
                 height: 25,
-                tintColor: focused ? "#e32f45" : "#748c94",
+                tintColor: focused ? colors.light.tint : "#748c94",
               }}
             />
           ),
         }}
       />
       <Tab.Screen
-        name="Inbox"
+        name="Notifications"
         component={NotificationsTab}
         options={{
-          title: "Inbox",
+          title: "Notifications",
           tabBarIcon: ({ focused }) => (
             <Image
               source={icons.chat}
@@ -66,7 +67,7 @@ export default function HomeScreen() {
               style={{
                 width: 25,
                 height: 25,
-                tintColor: focused ? "#e32f45" : "#748c94",
+                tintColor: focused ? colors.light.tint : "#748c94",
               }}
             />
           ),
@@ -84,7 +85,7 @@ export default function HomeScreen() {
               style={{
                 width: 25,
                 height: 25,
-                tintColor: focused ? "#e32f45" : "#748c94",
+                tintColor: focused ? colors.light.tint : "#748c94",
               }}
             />
           ),

@@ -1,4 +1,4 @@
-import { Stack } from "expo-router";
+import { Stack, router } from "expo-router";
 
 import { ScreenHeaderBtn, ScreenHeaderBtnWithText } from "../components/Header";
 
@@ -16,16 +16,16 @@ export default function Layout() {
             backgroundColor: colors.light.background,
           },
           headerTitle: () => <ScreenHeaderBtnWithText onPress={() => {}} />,
-          headerLeft: () => (
-            <ScreenHeaderBtn
-              dimensions={{
-                height: 25,
-                width: 25,
-              }}
-              iconUrl={icons.menu}
-              onPress={() => {}}
-            />
-          ),
+          // headerLeft: () => (
+          //   <ScreenHeaderBtn
+          //     dimensions={{
+          //       height: 25,
+          //       width: 25,
+          //     }}
+          //     iconUrl={icons.menu}
+          //     onPress={() => {}}
+          //   />
+          // ),
           headerRight: () => (
             <ScreenHeaderBtn
               dimensions={{
@@ -33,7 +33,7 @@ export default function Layout() {
                 width: 25,
               }}
               iconUrl={icons.user}
-              onPress={() => {}}
+              onPress={() => router.push("/auth/sign-in/")}
             />
           ),
         }}

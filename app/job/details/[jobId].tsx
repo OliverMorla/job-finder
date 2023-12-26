@@ -12,6 +12,7 @@ import { Stack, router, useGlobalSearchParams } from "expo-router";
 import db from "../../../lib/db-local";
 import colors from "../../../constants/colors";
 import icons from "../../../constants/icons";
+import { addToBookmarks } from "../../../lib/actions/bookmarks-actions";
 
 const JobDetails = () => {
   const params = useGlobalSearchParams();
@@ -36,6 +37,17 @@ const JobDetails = () => {
             <TouchableOpacity onPress={() => router.back()}>
               <Image
                 source={icons.arrow}
+                style={{
+                  width: 25,
+                  height: 25,
+                }}
+              />
+            </TouchableOpacity>
+          ),
+          headerRight: () => (
+            <TouchableOpacity onPress={() => addToBookmarks(job.job_id)}>
+              <Image
+                source={icons.bookmark}
                 style={{
                   width: 25,
                   height: 25,

@@ -21,7 +21,7 @@ const ScreenHeaderBtn = ({
   };
 }) => {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={onPress}>
       <Image
         source={iconUrl}
         resizeMode="contain"
