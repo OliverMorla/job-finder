@@ -4,9 +4,9 @@ import { Alert } from "react-native";
 const api = "https://job-finder-node-production.up.railway.app";
 
 // fetch server to retrieve all bookmarks
-const getBookmarks = async () => {
+const getBookmarks = async (userId: string) => {
   try {
-    const res = await axios.get(`${api}/auth/bookmarks`);
+    const res = await axios.post(`${api}/auth/bookmark/retrieve`, { userId });
     return res.data;
   } catch (err) {
     return Alert.alert("Error", "Failed to fetch bookmarks");
@@ -14,11 +14,11 @@ const getBookmarks = async () => {
 };
 
 // fetch server to store a bookmark
-const addToBookmarks = async (jobId: string) => {
+const addToBookmarks = async (jobId: string, userId: string) => {
   if (!jobId) return Alert.alert("Error", "Job ID is missing");
 
   try {
-    const res = await axios.post(`${api}/auth/bookmarks`, { jobId });
+    const res = await axios.post(`${api}/auth/bookmark/add`, { jobId, userId });
     if (res.data.ok) {
       return Alert.alert("Success", "Bookmark added");
     }
@@ -28,7 +28,7 @@ const addToBookmarks = async (jobId: string) => {
 };
 
 // fetch server to remove a bookmark
-const removeFromBookmarks = async (jobId: string) => {
+const removeFromBookmarks = async (jobId: string, userId: string) => {
   if (!jobId) return Alert.alert("Error", "Job ID is missing");
 
   try {

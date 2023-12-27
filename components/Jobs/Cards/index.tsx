@@ -2,6 +2,8 @@ import { View, Text, Image, TouchableOpacity, Linking } from "react-native";
 import icons from "../../../constants/icons";
 import colors from "../../../constants/colors";
 import { checkImage } from "../../../lib/checkImage";
+import { addToBookmarks } from "../../../lib/actions/bookmarks-actions";
+import { useAuth } from "../../../providers/auth-provider";
 const PopularJobCard = ({ job }: { job: JobProps }) => {
   return (
     <View className="drop-shadow-sm p-4">
@@ -27,6 +29,7 @@ const PopularJobCard = ({ job }: { job: JobProps }) => {
 const NearbyJobCard = () => {};
 
 const JobCard = ({ job }: { job: JobProps }) => {
+  const { session } = useAuth();
   return (
     <View className="bg-[#ccafff4e] p-4 w-[225px] h-[235px] rounded-3xl justify-between">
       <View className="flex-row justify-between">
@@ -73,7 +76,9 @@ const JobCard = ({ job }: { job: JobProps }) => {
         >
           <Text className="text-white font-bold">Apply Now</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => addToBookmarks(job.job_id, session?.user.id!)}
+        >
           <Image
             source={icons.bookmark}
             style={{

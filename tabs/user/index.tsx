@@ -21,13 +21,12 @@ const UserTab = () => {
             className="p-4 items-center rounded-lg"
             onPress={() => router.push("/auth/sign-in/")}
             style={{
-              elevation: 5,
               borderColor: "black",
               borderWidth: 0.2,
             }}
           >
             <Image
-              source={icons.happyFaceBlue}
+              source={icons.signIn}
               style={{
                 width: 50,
                 height: 50,
@@ -46,13 +45,12 @@ const UserTab = () => {
             className="p-4 items-center rounded-lg mt-4"
             onPress={() => router.push("/auth/sign-up/")}
             style={{
-              elevation: 5,
               borderColor: "black",
               borderWidth: 0.2,
             }}
           >
             <Image
-              source={icons.addGreen}
+              source={icons.add}
               style={{
                 width: 50,
                 height: 50,
