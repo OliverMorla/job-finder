@@ -9,20 +9,23 @@ import {
   Linking,
 } from "react-native";
 import { Stack, router, useGlobalSearchParams } from "expo-router";
+
 import db from "../../../lib/db-local";
 import colors from "../../../constants/colors";
 import icons from "../../../constants/icons";
-import { addToBookmarks } from "../../../lib/actions/bookmarks-actions";
+
+import {
+  addToBookmarks,
+} from "../../../lib/actions/bookmarks-actions";
 
 const JobDetails = () => {
   const params = useGlobalSearchParams();
 
-  const [currentTab, setCurrentTab] = useState<"description" | "company">(
-    "description"
-  );
+  const [currentTab, setCurrentTab] = useState<"description" | "company">("description");
+
   const job = db.data.find((job) => job.job_id === params.jobId);
 
-  if (!job) return null;
+  if (!job) return;
 
   return (
     <SafeAreaView
@@ -45,7 +48,7 @@ const JobDetails = () => {
             </TouchableOpacity>
           ),
           headerRight: () => (
-            <TouchableOpacity onPress={() => addToBookmarks(job.job_id)}>
+            <TouchableOpacity onPress={() => addToBookmarks(job.job_id, "")}>
               <Image
                 source={icons.bookmark}
                 style={{

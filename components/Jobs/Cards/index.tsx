@@ -1,9 +1,14 @@
 import { View, Text, Image, TouchableOpacity, Linking } from "react-native";
+
 import icons from "../../../constants/icons";
 import colors from "../../../constants/colors";
 import { checkImage } from "../../../lib/checkImage";
-import { addToBookmarks } from "../../../lib/actions/bookmarks-actions";
+import {
+  addToBookmarks,
+  removeFromBookmarks,
+} from "../../../lib/actions/bookmarks-actions";
 import { useAuth } from "../../../providers/auth-provider";
+
 const PopularJobCard = ({ job }: { job: JobProps }) => {
   return (
     <View className="drop-shadow-sm p-4">
@@ -22,6 +27,38 @@ const PopularJobCard = ({ job }: { job: JobProps }) => {
         {job.job_state},{job.job_country}
       </Text>
       <Text>{job.job_title}</Text>
+    </View>
+  );
+};
+
+const JobActivityCard = ({ job }: { job: JobProps }) => {
+  const { session } = useAuth();
+  return (
+    <View className="bg-[#ccafff4e] p-4 w-[95%] h-[100px] rounded-3xl justify-between">
+      <View className="flex-row justify-between gap-4">
+        <Image
+          source={{ uri: job.employer_logo }}
+          style={{
+            width: 50,
+            height: 50,
+          }}
+        />
+        <View>
+          <Text className="font-bold text-lg" numberOfLines={1}>
+            {job.job_title.slice(0, 30)}
+          </Text>
+          <Text className="opacity-50">
+            {job.job_state}, {job.job_country}
+          </Text>
+          <View className="opacity-50 flex-row gap-2">
+            <Text>
+              {new Date(job.job_posted_at_datetime_utc).toLocaleTimeString()}
+            </Text>
+            <Text>{job.job_employment_type}</Text>
+            <Text>{new Date(job.timestamp).toLocaleTimeString()}</Text>
+          </View>
+        </View>
+      </View>
     </View>
   );
 };
@@ -78,6 +115,70 @@ const JobCard = ({ job }: { job: JobProps }) => {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => addToBookmarks(job.job_id, session?.user.id!)}
+        >
+          <Image
+            source={icons.bookmark}
+            style={{
+              width: 15,
+              height: 15,
+            }}
+          />
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+};
+
+const BookmarkJobCard = ({ job }: { job: JobProps }) => {
+  const { session } = useAuth();
+  return (
+    <View className="bg-[#ccafff4e] p-4 w-[225px] h-[235px] rounded-3xl justify-between">
+      <View className="flex-row justify-between">
+        <Image
+          source={{ uri: job.employer_logo }}
+          style={{
+            width: 50,
+            height: 50,
+          }}
+        />
+
+        <View className="flex-row">
+          <Image
+            source={icons.star}
+            style={{
+              width: 15,
+              height: 15,
+            }}
+          />
+          <Text>4.5</Text>
+        </View>
+      </View>
+      <View>
+        <Text className="font-bold text-lg">{job.job_title}</Text>
+        <Text className="opacity-50">
+          {job.job_state}, {job.job_country}
+        </Text>
+        <View className="opacity-50 flex-row gap-2">
+          <Text>
+            {new Date(job.job_posted_at_datetime_utc).toLocaleTimeString()}
+          </Text>
+          <Text>{job.job_employment_type}</Text>
+        </View>
+      </View>
+      <View className="flex-row items-center justify-between">
+        <TouchableOpacity
+          style={{
+            paddingVertical: 10,
+            paddingHorizontal: 30,
+            borderRadius: 10,
+            backgroundColor: colors.light.tint,
+          }}
+          onPress={() => Linking.openURL(job.job_apply_link)}
+        >
+          <Text className="text-white font-bold">Apply Now</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => removeFromBookmarks(job.job_id, session?.user.id!)}
         >
           <Image
             source={icons.bookmark}
@@ -207,4 +308,11 @@ const ViewAllJobCards = ({ job }: { job: JobProps }) => {
   );
 };
 
-export { PopularJobCard, NearbyJobCard, JobCard, ViewAllJobCards };
+export {
+  PopularJobCard,
+  NearbyJobCard,
+  JobCard,
+  ViewAllJobCards,
+  BookmarkJobCard,
+  JobActivityCard,
+};

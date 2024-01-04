@@ -7,7 +7,9 @@ const deleteAccount = async (userId: string) => {
   if (!userId) return Alert.alert("Error => User ID is missing");
 
   try {
-    const res = await axios.delete(`${api}/auth/user`);
+    const res = await axios.delete(`${api}/auth/user`, {
+      data: { userId },
+    });
     return res.data;
   } catch (err) {}
 };

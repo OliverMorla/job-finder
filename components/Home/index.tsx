@@ -3,7 +3,6 @@ import {
   TextInput,
   Image,
   Text,
-  ScrollView,
   FlatList,
   TouchableOpacity,
 } from "react-native";
@@ -12,8 +11,11 @@ import db from "../../lib/db-local";
 import { JobCard } from "../Jobs/Cards";
 import colors from "../../constants/colors";
 import { router } from "expo-router";
+import { useState } from "react";
 
 const SearchBar = () => {
+  const [searchInput, setSearchInput] = useState("");
+
   return (
     <View className="flex-1 p-4 items-center relative">
       <View>
@@ -33,6 +35,9 @@ const SearchBar = () => {
           placeholder="Search any job..."
           className="relative bg-[#CCAFFF] rounded-3xl w-[250px] h-[65px] text-center"
           placeholderTextColor={"#fff"}
+          enterKeyHint="search"
+          onChangeText={(text) => setSearchInput(text)}
+          onSubmitEditing={() => router.push(`/jobs/view-all?search=${searchInput}`)}
         />
         <Image source={icons.search} className="w-6 h-6 absolute ml-10" />
       </View>
@@ -45,7 +50,7 @@ const SkilledJobs = () => {
     <View className="p-4">
       <View className="flex-row justify-between items-center">
         <Text className="font-bold text-2xl">Based on your skills</Text>
-        <TouchableOpacity onPress={() => router.push("/job/view-all/")}>
+        <TouchableOpacity onPress={() => router.push("/jobs/view-all/")}>
           <Text
             style={{
               color: colors.light.tint,
@@ -60,7 +65,7 @@ const SkilledJobs = () => {
         data={db.data}
         renderItem={({ item }) => (
           <TouchableOpacity
-            onPress={() => router.push(`/job/details/${item.job_id}`)}
+            onPress={() => router.push(`/jobs/details/${item.job_id}`)}
           >
             <JobCard job={item as any} />
           </TouchableOpacity>

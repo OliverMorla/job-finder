@@ -1,4 +1,5 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
+import { Link, router } from 'expo-router';
 import { useAuth } from "../../../providers/auth-provider";
 import icons from "../../../constants/icons";
 import { deleteAccount } from "../../../lib/actions/user-actions";
@@ -45,6 +46,19 @@ const AuthDashboard = () => {
             }}
           />
           <Text className="font-bold text-white ml-4">Log Out</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          className="bg-lime-500 items-center justify-center w-36 p-4 rounded-lg mt-4 flex-row"
+          onPress={() => router.push("/root/user/modal")}
+        >
+          <Image
+            source={icons.mail}
+            style={{
+              width: 25,
+              height: 25,
+            }}
+          />
+          <Text className="font-bold text-white ml-4">Upload Resume</Text>
         </TouchableOpacity>
         <TouchableOpacity
           className="bg-red-500 items-center justify-center w-36 p-4 rounded-lg mt-4 flex-row"

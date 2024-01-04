@@ -8,6 +8,7 @@ const getActivities = async () => {
   try {
     const res = await axios.get(`${api}/auth/activities`);
     return res.data;
-  } catch (err) {}
+  } catch (err) {
+    Alert.alert(err instanceof Error ? err.message : "Something went wrong");
+  }
 };
-

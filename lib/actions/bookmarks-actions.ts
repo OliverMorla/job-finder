@@ -32,7 +32,7 @@ const removeFromBookmarks = async (jobId: string, userId: string) => {
   if (!jobId) return Alert.alert("Error", "Job ID is missing");
 
   try {
-    const res = await axios.delete(`${api}/auth/bookmarks/${jobId}`);
+    const res = await axios.delete(`${api}/auth/bookmark/${jobId}`);
     if (res.data.ok) {
       return Alert.alert("Success", "Bookmark removed");
     }

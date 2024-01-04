@@ -92,3 +92,9 @@ interface SessionProps {
     id: string;
   };
 }
+
+interface BookmarkProps {
+  _id: string;
+  createdAt: string | Date;
+  jobId: string;
+}

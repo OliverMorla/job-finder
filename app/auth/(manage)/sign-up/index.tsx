@@ -9,11 +9,11 @@ import {
   Platform,
 } from "react-native";
 
+import { router, Stack } from "expo-router";
+
 import icons from "../../../../constants/icons";
 import colors from "../../../../constants/colors";
-
 import { useAuth } from "../../../../providers/auth-provider";
-import { router, Stack } from "expo-router";
 
 const SignUp = () => {
   const { signUp } = useAuth();

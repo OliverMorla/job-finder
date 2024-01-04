@@ -1,16 +1,15 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
-import { useRouter } from "expo-router";
+import { Link, useRouter } from "expo-router";
 
-import { useAuth } from "../../providers/auth-provider";
-import { styles } from "../../styles";
-import AuthDashboard from "../../components/Auth/Dashboard";
-import icons from "../../constants/icons";
+import { useAuth } from "../../../providers/auth-provider";
+import { styles } from "../../../styles";
+import AuthDashboard from "../../../components/Auth/Dashboard";
+import icons from "../../../constants/icons";
 
-const UserTab = () => {
+const UserScreen = () => {
   const { session } = useAuth();
 
   const router = useRouter();
-
   return (
     <View style={styles.containerWithHeightBg}>
       {session ? (
@@ -61,10 +60,11 @@ const UserTab = () => {
               <Text className="opacity-40">Tap here to create an account</Text>
             </View>
           </TouchableOpacity>
+
         </View>
       )}
     </View>
   );
 };
 
-export default UserTab;
+export default UserScreen;
