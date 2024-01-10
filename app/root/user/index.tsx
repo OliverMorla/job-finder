@@ -1,6 +1,7 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import { Link, useRouter } from "expo-router";
 
+
 import { useAuth } from "../../../providers/auth-provider";
 import { styles } from "../../../styles";
 import AuthDashboard from "../../../components/Auth/Dashboard";
@@ -10,6 +11,7 @@ const UserScreen = () => {
   const { session } = useAuth();
 
   const router = useRouter();
+
   return (
     <View style={styles.containerWithHeightBg}>
       {session ? (

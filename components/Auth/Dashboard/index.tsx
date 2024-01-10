@@ -1,16 +1,40 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
-import { Link, router } from 'expo-router';
+import { Link, router } from "expo-router";
 import { useAuth } from "../../../providers/auth-provider";
 import icons from "../../../constants/icons";
 import { deleteAccount } from "../../../lib/actions/user-actions";
+import * as ImagePicker from "expo-image-picker";
+import { useState } from "react";
 
 const AuthDashboard = () => {
   const { signOut, session } = useAuth();
+  const [userImage, setUserImage] = useState<any>(null);
+
+  const [status, requestPermission] = ImagePicker.useCameraPermissions();
+
+  const pickImage = async () => {
+    await requestPermission();
+
+    let result = await ImagePicker.launchCameraAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      setUserImage(result.assets[0].uri);
+    }
+
+    console.log(result);
+  };
+
   return (
     <View className="items-center justify-center h-full">
       <View className="items-center">
         <Image
-          source={icons.user}
+          // source={icons.user}
+          source={{ uri: userImage }}
           style={{
             borderColor: "gray",
             width: 75,
@@ -20,7 +44,9 @@ const AuthDashboard = () => {
           }}
         />
         {session?.user.avatar === null ? (
-          <Text> Tap to add an avatar </Text>
+          <TouchableOpacity onPress={pickImage}>
+            <Text> Tap to add an avatar </Text>
+          </TouchableOpacity>
         ) : null}
       </View>
       <View className="mt-4">
